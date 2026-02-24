@@ -1,2 +1,2 @@
 # journey-begins
-The chronicles of my daily learning journeyR
+The chronicles of my daily learning journey
