@@ -38,3 +38,57 @@ when implementing `fork()`
 - 현재 프로세스 이미지를 새로운 프로그램으로 교체한다.
 - 윈도우 : 프로세스 생성() = fork() + exec()
 > 윈도우는 GUI 기반 OS 이다. MS-DOS는 텍스트 기반 OS이다.
+
+### Process Hierarchy
+**Resource sharing modes**
+- Parents and children share all resources
+- Children shate a subset of parent's resources
+- Parents and children share no resources
+
+**Execution modes**
+- Parent and children execute concurrently
+- Parent waits until children terminate
+
+**Address space modes**
+- Child is a duplicate of the parent
+- Child has a new program loaded into it
+
+### Process Termination
+**Normal exit (voluntary)**
+- Process executes last statement and asks the operating system to delete it(via exit())
+  - Output data from child to parent(via wait())
+  - Process's resources are deallocated by the operating system
+  
+**Error exit(voluntary)**
+
+**Fatal error(involuntary)**
+- Segmentation error fault - illegal memory access
+- Protection fault
+- Exceed allocated resources, etc.
+
+**Killed by another process (involuntary)**
+- By receiving a signal
+
+**The parent process may wait for termination of a child process by using the wait() system call**
+`pid = wait(&status);`
+- If parent did not invoke wait(), child process become a zombie process
+
+### System call(Kernel -> User)
+Allow the kernel to carefully expose certain key pieces of functionality to user program, such as
+- Accessing the file system
+- Creating and destroying processes
+- Communicating with other processes
+- Allocating more memory
+**System-call number**
+- 각 시스템 콜에 할당되어 있다.
+- 유저 코드에는 원하는 시스템 콜 넘버를 레지스터에 placing 해야한다.
+
+### Trap
+- 트랩은 커널 모드로 진입 하는 것(hardware의 resource를 다 사용가능 
+  한 것)
+  - 권한 레벨을 높임
+- Return-from-trap: Kernel -> User program
+  -  권한 레벨을 낮춤
+- 그래서 트랩이 OS에서 작동해야 하는 코드를 어떻게 구분하냐?
+  - trap table
+  - trap handler
