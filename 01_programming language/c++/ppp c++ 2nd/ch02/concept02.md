@@ -1,4 +1,4 @@
-## ch02.Hello, World!
+## 2.Hello, World!
 ### 2.1 Programs
 - 프로그램: 'what to do'
 - 프로그래밍: 프로그램을 작성하고 테스트하는 것.
